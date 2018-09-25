@@ -20,7 +20,7 @@ from Bio.PDB import PDBIO
 EXIT_FILE_IO_ERROR = 1
 EXIT_COMMAND_LINE_ERROR = 2
 DEFAULT_VERBOSE = False
-PROGRAM_NAME = "pdb_add_chain"
+PROGRAM_NAME = "pdb_rename_chain"
 
 
 try:
@@ -57,12 +57,24 @@ def parse_args():
                         metavar='LOG_FILE',
                         type=str,
                         help='record program progress in LOG_FILE')
+    parser.add_argument('--old',
+                        metavar='CHAIN_ID',
+                        type=str,
+                        required=True,
+                        help='Replace this ID with --new')
+    parser.add_argument('--new',
+                        metavar='CHAIN_ID',
+                        type=str,
+                        required=True,
+                        help='Replace --old with this ID')
     parser.add_argument('--input',
                         metavar='PDB_FILE',
+                        required=True,
                         type=str,
                         help='Input PDB file')
     parser.add_argument('--output',
                         metavar='PDB_FILE',
+                        required=True,
                         type=str,
                         help='Output PDB file')
     return parser.parse_args()
@@ -73,16 +85,18 @@ def process_file(options):
     parser = PDBParser()
     structure = parser.get_structure('structure', options.input)
     model=structure[0]
-    new_chain = Chain("A")
-    old_chains = []
+    #new_chain = Chain("A")
+    new_chain = Chain(options.new)
+    old_chain = [] 
     for chain in model.get_chains():
-        old_chains.append(chain)
-        for residue in chain.get_residues():
-            new_chain.add(residue)
-        # We assume there is only one chain in the file
-        # and ignore any remaining chains
-        break
-    for chain in old_chains:
+        if chain.get_id() == options.old:
+            old_chain.append(chain)
+            for residue in chain.get_residues():
+                new_chain.add(residue)
+            # We assume there is only one chain in the file
+            # and ignore any remaining chains
+            break
+    for chain in old_chain:
         model.detach_child(chain.get_id())
     model.add(new_chain)
     io=PDBIO()
