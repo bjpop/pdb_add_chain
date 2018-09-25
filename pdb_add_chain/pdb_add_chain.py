@@ -5,9 +5,6 @@ Copyright   : (c) Bernie Pope, 25 Sep 2018
 License     : BSD-3-Clause 
 Maintainer  : bjpope@unimelb.edu.au 
 Portability : POSIX
-
-The program reads one or more input FASTA files. For each file it computes a
-variety of statistics, and then prints a summary of the statistics as output.
 '''
 
 from argparse import ArgumentParser
@@ -51,7 +48,7 @@ def parse_args():
     Returns Options object with command line argument values as attributes.
     Will exit the program on a command line error.
     '''
-    description = 'Read one or more FASTA files, compute simple stats for each file'
+    description = 'Rename chain in PDB file'
     parser = ArgumentParser(description=description)
     parser.add_argument('--version',
                         action='version',
@@ -72,7 +69,7 @@ def parse_args():
 
 
 def process_file(options):
-    logging.info("Processing FASTA file from %s", options.input)
+    logging.info("Processing PDB file from %s", options.input)
     parser = PDBParser()
     structure = parser.get_structure('structure', options.input)
     model=structure[0]

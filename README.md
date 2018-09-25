@@ -55,8 +55,6 @@ $ pdb_add_chain -h
 usage: pdb_add_chain [-h] [--version] [--log LOG_FILE] [--input PDB_FILE]
                      [--output PDB_FILE]
 
-Read one or more FASTA files, compute simple stats for each file
-
 optional arguments:
   -h, --help         show this help message and exit
   --version          show program's version number and exit
@@ -76,7 +74,7 @@ If the ``--log FILE`` command line argument is specified, pdb_add_chain will out
 Pdb_add_chain returns the following exit status values:
 
 * 0: The program completed successfully.
-* 1: File I/O error. This can occur if at least one of the input FASTA files cannot be opened for reading. This can occur because the file does not exist at the specified path, or pdb_add_chain does not have permission to read from the file. 
+* 1: File I/O error. This can occur if at least one of the input PDB files cannot be opened for reading. This can occur because the file does not exist at the specified path, or pdb_add_chain does not have permission to read from the file. 
 * 2: A command line error occurred. This can happen if the user specifies an incorrect command line argument. In this circumstance pdb_add_chain will also print a usage message to the standard error device (stderr).
 
 
