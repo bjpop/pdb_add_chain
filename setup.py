@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 LONG_DESCRIPTION = \
-'''Add a chain ID to a PDB file'''
+'''Rename a chain ID in a PDB file'''
 
 setup(
     name='pdb_rename_chain',
@@ -17,7 +17,7 @@ setup(
     },
     url='https://github.com/bjpop/pdb_rename_chain',
     license='LICENSE',
-    description=('Add a chain ID to a PDB file'),
+    description=('Rename a chain ID in a PDB file'),
     long_description=(LONG_DESCRIPTION),
     install_requires=["biopython", "numpy"],
 )

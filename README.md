@@ -43,7 +43,7 @@ $ pip install -U --user /path/to/pdb_rename_chain
 
 Example usage:
 ```
-pdb_rename_chain --in example.pdb --out output.pdb
+pdb_rename_chain --old ' ' --new A --input input.pdb --output output.pdb
 ```
 
 ## Help message
@@ -52,15 +52,20 @@ Pdb_add_chain can display usage information on the command line via the `-h` or 
 
 ```
 $ pdb_rename_chain -h
-usage: pdb_rename_chain [-h] [--version] [--log LOG_FILE] [--input PDB_FILE]
-                     [--output PDB_FILE]
+usage: pdb_rename_chain [-h] [--version] [--log LOG_FILE] --old CHAIN_ID --new
+                        CHAIN_ID --input PDB_FILE --output PDB_FILE
+
+Rename chain in PDB file
 
 optional arguments:
   -h, --help         show this help message and exit
   --version          show program's version number and exit
   --log LOG_FILE     record program progress in LOG_FILE
+  --old CHAIN_ID     Replace this ID with --new
+  --new CHAIN_ID     Replace --old with this ID
   --input PDB_FILE   Input PDB file
   --output PDB_FILE  Output PDB file
+
 ```
 
 
